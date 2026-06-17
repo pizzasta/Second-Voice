@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Second Voice</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card">
+        <p class="eyebrow">Second Voice</p>
+        <h1>Say it your way, without overthinking the text.</h1>
+        <p class="hero-copy">
+          Rephrase messages into teen-friendly tones for awkward plans, apologies, boundaries,
+          check-ins, and everyday conversations.
+        </p>
+      </section>
+
+      <section class="composer" aria-label="Message rephrase tool">
+        <div class="panel input-panel">
+          <div class="panel-heading">
+            <label for="message">Your message</label>
+            <div class="input-actions"><button id="clear-button" class="ghost-button" type="button">Clear</button><button id="random-tone-button" class="ghost-button" type="button">Surprise me</button></div>
+          </div>
+          <textarea id="message" maxlength="500" aria-describedby="message-guidance" placeholder="Paste or type the text you want to rephrase...">I cannot hang out tonight because I need some time to myself</textarea>
+          <p id="message-guidance" class="input-guidance"><span id="character-count">0</span>/500 characters. Short, specific messages usually rephrase best.</p>
+        </div>
+
+        <aside class="retention-panel" aria-label="Optional practice features">
+          <div class="mini-card streak-card">
+            <span class="mini-label">Messages improved</span>
+            <strong><span id="messages-improved-count">0</span> helped</strong>
+            <p>A simple total of messages you rephrase here — no streaks, no pressure.</p>
+          </div>
+          <div class="mini-card prompt-card">
+            <span class="mini-label">Optional practice idea</span>
+            <p id="daily-prompt">Loading an optional rephrase idea...</p>
+          </div>
+        </aside>
+
+        <div class="tone-grid" aria-label="Choose a tone" id="tone-grid"></div>
+
+        <div class="panel output-panel">
+          <p id="safety-note" class="safety-note"></p>
+          <div class="output-header">
+            <div>
+              <span class="label-text">Rephrased as</span>
+              <strong id="selected-tone-label">Chill</strong>
+            </div>
+            <div class="output-actions">
+              <button id="compare-button" type="button">Compare tones</button>
+              <button id="save-button" type="button">Save fave</button>
+              <button id="copy-button" type="button">Copy</button>
+            </div>
+          </div>
+          <p id="output" aria-live="polite"></p>
+          <div id="compare-panel" class="compare-panel" aria-label="Tone comparison"></div>
+          <p id="status-message" class="sr-only" aria-live="polite"></p>
+          <textarea id="clipboard-fallback" class="clipboard-fallback" aria-label="Copy this rephrased message manually" readonly hidden></textarea>
+        </div>
+
+        <div class="panel saved-panel">
+          <span class="label-text">Saved quick-sends</span>
+          <ul id="saved-list" class="saved-list"></ul>
+        </div>
+      </section>
+    </main>
+    <script src="src/main.js"></script>
+  </body>
+</html>

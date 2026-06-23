@@ -167,29 +167,71 @@ textarea:focus {
 }
 
 .tone-card {
-  background: var(--panel-strong);
-  border-radius: 1.25rem;
+  --tone-accent: var(--blue);
+  align-items: center;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--tone-accent) 22%, transparent), transparent 70%), var(--panel-strong);
+  border-color: color-mix(in srgb, var(--tone-accent) 45%, var(--line));
+  border-radius: 999px 999px 1.25rem 1.25rem;
   color: var(--ink);
   cursor: pointer;
-  padding: 1rem;
+  display: grid;
+  gap: 0.3rem 0.75rem;
+  grid-template-columns: auto 1fr;
+  padding: 0.85rem 1rem;
+  position: relative;
   text-align: left;
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
 
-.tone-card:hover,
+.tone-card:hover {
+  border-color: var(--tone-accent);
+  transform: translateY(-2px) scale(1.01);
+}
+
 .tone-card.active {
-  background: rgba(37, 99, 235, 0.34);
-  border-color: var(--blue);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--tone-accent) 42%, transparent), transparent 75%), var(--panel-strong);
+  border-color: var(--tone-accent);
+  box-shadow: 0 0 0 2px var(--tone-accent), 0 14px 32px var(--sticker-glow);
+  transform: translateY(-3px) scale(1.03);
 }
 
-.tone-card span {
+.tone-card.active::after {
+  align-items: center;
+  background: var(--tone-accent);
+  border-radius: 999px;
+  color: #07111f;
+  content: '✓';
+  display: flex;
+  font-size: 0.85rem;
+  font-weight: 900;
+  height: 1.35rem;
+  justify-content: center;
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+  width: 1.35rem;
+}
+
+.tone-emoji {
+  align-items: center;
+  background: color-mix(in srgb, var(--tone-accent) 30%, transparent);
+  border-radius: 999px;
+  display: flex;
+  font-size: 1.25rem;
+  grid-row: 1 / span 2;
+  height: 2.4rem;
+  justify-content: center;
+  width: 2.4rem;
+}
+
+.tone-label {
+  align-self: end;
   display: block;
   font-weight: 900;
-  margin-bottom: 0.35rem;
 }
 
-.tone-card small {
+.tone-description {
+  align-self: start;
   color: var(--muted);
   line-height: 1.4;
 }

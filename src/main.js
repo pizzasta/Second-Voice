@@ -119,7 +119,7 @@ function rephrase(text, tone) {
   const cleaned = cleanInput(text);
 
   if (!cleaned) {
-    return 'Type a message first, then pick a vibe.';
+    return 'Start with a few words you want help saying — we’ll keep it kind and clear.';
   }
 
   const rewritten = restructureSentence(cleaned, tone);
@@ -159,7 +159,8 @@ function renderSavedRephrases() {
 
   if (savedRephrases.length === 0) {
     const emptyItem = document.createElement('li');
-    emptyItem.textContent = 'Save a favorite rephrase to build your quick-send list.';
+    emptyItem.className = 'saved-empty-card';
+    emptyItem.textContent = 'No saved quick-sends yet — save a favorite rephrase when one feels right.';
     savedList.append(emptyItem);
     return;
   }
@@ -250,8 +251,10 @@ function updateCharacterCount() {
 }
 
 function updateOutput() {
+  const hasMessage = Boolean(cleanInput(messageInput.value));
   selectedToneLabel.textContent = selectedTone.label;
   output.textContent = rephrase(messageInput.value, selectedTone);
+  output.classList.toggle('output-placeholder', !hasMessage);
   updateSafetyNote();
   updateCharacterCount();
   renderComparison(false);

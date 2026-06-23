@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Voice You Didn't Send · Second Voice</title>
+    <link rel="icon" type="image/svg+xml" href="icons/icon-192.svg" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#14110f" />
+    <style>
+      :root {
+        --paper: #14110f;
+        --paper-2: #1c1814;
+        --ink: #f3ece1;
+        --muted: #b6a892;
+        --line: rgba(214, 196, 168, 0.18);
+        --glow: rgba(255, 214, 153, 0.5);
+        --accent: #e7b87a;
+        --accent-soft: #c79bd6;
+        --bubble: rgba(40, 33, 27, 0.85);
+        font-family: "Iowan Old Style", "Palatino Linotype", Georgia, ui-serif, serif;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        color: var(--ink);
+        background:
+          radial-gradient(1200px 600px at 15% -10%, rgba(199, 155, 214, 0.12), transparent 60%),
+          radial-gradient(1000px 500px at 110% 10%, rgba(231, 184, 122, 0.12), transparent 55%),
+          var(--paper);
+        min-height: 100vh;
+        line-height: 1.55;
+        overflow-x: hidden;
+      }
+      .floating-bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+      .floating-bubbles span {
+        position: absolute; bottom: -60px;
+        padding: 8px 14px; border-radius: 16px 16px 16px 4px;
+        background: var(--bubble); color: var(--muted);
+        border: 1px solid var(--line); font-size: 13px;
+        opacity: 0; white-space: nowrap;
+        animation: drift linear infinite;
+      }
+      @keyframes drift {
+        0% { transform: translateY(0) translateX(0); opacity: 0; }
+        12% { opacity: 0.55; }
+        88% { opacity: 0.35; }
+        100% { transform: translateY(-115vh) translateX(30px); opacity: 0; }
+      }
+      main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 48px 22px 90px; }
+      .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; }
+      .top-nav a { color: var(--muted); text-decoration: none; font-size: 14px; letter-spacing: 0.02em; }
+      .top-nav a:hover { color: var(--ink); }
+      .brand { font-size: 13px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); }
+      .hero { text-align: center; margin-bottom: 44px; }
+      .hero h1 {
+        font-size: clamp(34px, 7vw, 56px); line-height: 1.04; margin: 6px 0 14px;
+        font-style: italic; font-weight: 500;
+      }
+      .hero p { color: var(--muted); font-size: 18px; max-width: 540px; margin: 0 auto; }
+      .notebook {
+        background: linear-gradient(180deg, var(--paper-2), rgba(20, 17, 15, 0.7));
+        border: 1px solid var(--line); border-radius: 22px;
+        padding: 26px 24px; margin: 0 0 26px;
+        box-shadow: 0 30px 60px -40px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.03);
+      }
+      .notebook h2 { font-size: 22px; margin: 0 0 4px; font-style: italic; }
+      .notebook .sub { color: var(--muted); font-size: 15px; margin: 0 0 18px; }
+      .field-label { display: block; font-size: 13px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 8px; }
+      textarea, input[type="text"] {
+        width: 100%; background: rgba(10, 9, 8, 0.6); color: var(--ink);
+        border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px;
+        font-family: inherit; font-size: 17px; resize: vertical; line-height: 1.5;
+      }
+      textarea:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(231,184,122,0.15); }
+      .btn {
+        appearance: none; cursor: pointer; border: none; border-radius: 999px;
+        padding: 12px 22px; font-family: inherit; font-size: 15px; font-weight: 600;
+        color: #1a140d; background: linear-gradient(135deg, var(--accent), #f0cf9b);
+        transition: transform 0.15s ease, box-shadow 0.2s ease;
+        box-shadow: 0 12px 30px -14px var(--glow);
+      }
+      .btn:hover { transform: translateY(-1px); }
+      .btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); box-shadow: none; }
+      .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+      /* Voice Split */
+      .split-grid { display: grid; gap: 12px; margin-top: 22px; }
+      @media (min-width: 620px) { .split-grid { grid-template-columns: 1fr 1fr; } }
+      .layer {
+        position: relative; background: var(--bubble); border: 1px solid var(--line);
+        border-radius: 16px 16px 16px 4px; padding: 16px 18px;
+        opacity: 0; transform: translateY(10px);
+        animation: rise 0.5s ease forwards;
+      }
+      .layer .ripple { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+      @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+      .layer .tag { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-soft); }
+      .layer.said .tag { color: var(--muted); }
+      .layer .text { font-size: 19px; margin-top: 8px; font-style: italic; }
+      .layer.fear { border-color: rgba(199,155,214,0.35); }
+      .layer.future { border-color: rgba(231,184,122,0.4); }
+      /* Echoes */
+      .echo-count { font-size: 17px; color: var(--accent); font-style: italic; margin: 4px 0 16px; }
+      .echo {
+        background: rgba(10, 9, 8, 0.5); border-left: 2px solid var(--accent-soft);
+        border-radius: 4px 14px 14px 4px; padding: 12px 16px; margin-bottom: 10px;
+        color: var(--ink); font-size: 16px; font-style: italic;
+        opacity: 0; animation: rise 0.5s ease forwards;
+      }
+      .echo .meta { display: block; font-style: normal; color: var(--muted); font-size: 12px; margin-top: 6px; }
+      .daily-card { text-align: center; }
+      .daily-card .prompt { font-size: 24px; font-style: italic; margin: 6px 0 18px; }
+      .collected { color: var(--muted); font-size: 14px; margin-top: 14px; }
+      .reassure { text-align: center; color: var(--muted); font-size: 14px; margin-top: 30px; font-style: italic; }
+      .site-footer { text-align: center; margin-top: 40px; color: var(--muted); font-size: 13px; }
+      .site-footer a { color: var(--accent); }
+      .hidden { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div class="floating-bubbles" id="floating-bubbles" aria-hidden="true"></div>
+    <main>
+      <nav class="top-nav">
+        <span class="brand">Second Voice</span>
+        <a href="index.html">&larr; Back to rephrase tool</a>
+      </nav>
+
+      <header class="hero">
+        <p class="brand">The Voice You Didn't Send</p>
+        <h1>What were you actually feeling?</h1>
+        <p>A quiet place to figure out what you really mean &mdash; before you post, text, or reply.</p>
+      </header>
+
+      <section class="notebook daily-card" aria-label="Daily reflection">
+        <span class="field-label">Today's page</span>
+        <p class="prompt">What's something you didn't say today?</p>
+        <textarea id="daily-input" rows="2" placeholder="It's just for you. Write the thing you held back..."></textarea>
+        <div class="btn-row" style="justify-content:center;">
+          <button class="btn" id="daily-save">Keep this memory</button>
+        </div>
+        <p class="collected" id="daily-collected"></p>
+      </section>
+
+      <section class="notebook" aria-label="Voice Split">
+        <h2>Voice Split</h2>
+        <p class="sub">Type what you'd actually send. We'll gently unfold the rest.</p>
+        <label class="field-label" for="split-input">What you'd type</label>
+        <input type="text" id="split-input" placeholder="like &quot;K&quot;, &quot;lol&quot;, &quot;I'm fine&quot;, &quot;whatever&quot;" />
+        <div class="btn-row">
+          <button class="btn" id="split-go">Unfold it</button>
+          <button class="btn ghost" id="split-clear">Clear</button>
+        </div>
+        <div class="split-grid" id="split-grid"></div>
+      </section>
+
+      <section class="notebook" aria-label="Anonymous Echoes">
+        <h2>Anonymous Echoes</h2>
+        <p class="sub">Say how you feel. See how many quietly felt it too.</p>
+        <label class="field-label" for="echo-input">I feel like&hellip;</label>
+        <input type="text" id="echo-input" placeholder="e.g. everyone already has their friend group" />
+        <div class="btn-row">
+          <button class="btn" id="echo-go">Send into the quiet</button>
+        </div>
+        <p class="echo-count hidden" id="echo-count"></p>
+        <div id="echo-list"></div>
+        <p class="reassure">Not social media. Not comments. Just proof you're not alone.</p>
+      </section>
+
+      <footer class="site-footer">
+        <a href="safety.html">Need real support? Read this.</a>
+      </footer>
+    </main>
+    <script src="src/unsent.js"></script>
+  </body>
+</html>

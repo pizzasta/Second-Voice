@@ -1,19 +1,19 @@
 const tones = [
-  { id: 'chill', label: 'Chill', description: 'Easygoing and casual', opener: 'No stress,', closers: ['we can figure it out.', 'just wanted to be honest.'], emoji: ['🙂', '✨'], swaps: { cannot: "can't", 'do not': "don't", 'I need': 'I could use' } },
-  { id: 'kind', label: 'Kind', description: 'Warm without sounding intense', opener: 'I hear you, and', closers: ['I appreciate you understanding.', 'thanks for hearing me out.'], emoji: ['💛'], swaps: { mad: 'upset', hate: 'really do not like', annoyed: 'bothered' } },
-  { id: 'confident', label: 'Confident', description: 'Clear and direct', opener: 'To be clear,', closers: ['That is what works for me.', 'I wanted to say it directly.'], emoji: [], swaps: { maybe: '', 'I guess': '', kinda: '' } },
-  { id: 'apology', label: 'Apology', description: 'Owns the moment and keeps it real', opener: 'I am sorry —', closers: ['I will try to handle it better next time.', 'I want to make it right.'], emoji: [], sensitive: true, swaps: { 'my bad': 'I am sorry', fault: 'responsibility' } },
-  { id: 'boundary', label: 'Boundary', description: 'Respectful but firm', opener: 'I need to be honest:', closers: ['Please respect that.', 'That boundary matters to me.'], emoji: [], sensitive: true, swaps: { 'I cannot': 'I am not able to', 'I can\'t': 'I am not able to' } },
-  { id: 'funny', label: 'Funny', description: 'Light, playful, and not too serious', opener: 'Plot twist:', closers: ['not dramatic, just true.', 'that is the vibe.'], emoji: ['😂', '😅'], swaps: { very: 'super', really: 'actually' } },
-  { id: 'crush', label: 'Crush', description: 'Sweet without doing too much', opener: 'Low-key,', closers: ['I wanted you to know.', 'no pressure, just being honest.'], emoji: ['🙈', '✨'], swaps: { like: 'like talking to', cool: 'really easy to be around' } },
-  { id: 'parent', label: 'Parent-safe', description: 'Respectful for family conversations', opener: 'I understand, and', closers: ['I am trying to handle this responsibly.', 'I wanted to explain calmly.'], emoji: [], swaps: { gonna: 'going to', wanna: 'want to', yeah: 'yes' } },
-  { id: 'teacher', label: 'Teacher-ready', description: 'Polite enough for school', opener: 'Hi, I wanted to explain that', closers: ['Thank you for understanding.', 'I appreciate your help.'], emoji: [], swaps: { kid: 'student', stuff: 'work', gonna: 'going to' } },
-  { id: 'bestie', label: 'Bestie', description: 'Close-friend energy', opener: 'Bestie, real talk:', closers: ['love you for getting it.', 'you know I mean it.'], emoji: ['💕', '🫶'], swaps: { friend: 'bestie', really: 'for real' } },
-  { id: 'group-chat', label: 'Group Chat', description: 'Short and easy to send to everyone', opener: 'Quick update:', closers: ['drop thoughts when you can.', 'let me know what works.'], emoji: ['💬'], swaps: { everyone: 'y’all', people: 'everyone' } },
-  { id: 'hype', label: 'Hype', description: 'More excited and supportive', opener: 'Okay YES —', closers: ['I am so here for this!', 'you have got this.'], emoji: ['🔥', '👏'], swaps: { good: 'amazing', nice: 'so good', happy: 'excited' } },
-  { id: 'soft-no', label: 'Soft No', description: 'Declines without sounding harsh', opener: 'Thank you for asking, but', closers: ['I hope you understand.', 'maybe another time.'], emoji: [], sensitive: true, swaps: { no: 'I am going to pass', cannot: "can't" } },
-  { id: 'check-in', label: 'Check-in', description: 'Caring and low-pressure', opener: 'No pressure to answer fast, but', closers: ['I am here if you want to talk.', 'just checking in on you.'], emoji: ['🤍'], swaps: { okay: 'doing okay', sad: 'having a hard time' } },
-  { id: 'fix-it', label: 'Fix It', description: 'Turns tension into a next step', opener: 'I want to fix this, so', closers: ['Can we talk about what would help next?', 'What can we do differently from here?'], emoji: [], swaps: { fight: 'argument', problem: 'issue', angry: 'upset' } },
+  { id: 'chill', accent: '#38bdf8', label: 'Chill', description: 'Easygoing and casual', opener: 'No stress,', closers: ['we can figure it out.', 'just wanted to be honest.'], emoji: ['🙂', '✨'], swaps: { cannot: "can't", 'do not': "don't", 'I need': 'I could use' } },
+  { id: 'kind', accent: '#fbbf24', label: 'Kind', description: 'Warm without sounding intense', opener: 'I hear you, and', closers: ['I appreciate you understanding.', 'thanks for hearing me out.'], emoji: ['💛'], swaps: { mad: 'upset', hate: 'really do not like', annoyed: 'bothered' } },
+  { id: 'confident', accent: '#a78bfa', label: 'Confident', description: 'Clear and direct', opener: 'To be clear,', closers: ['That is what works for me.', 'I wanted to say it directly.'], emoji: [], swaps: { maybe: '', 'I guess': '', kinda: '' } },
+  { id: 'apology', accent: '#f472b6', label: 'Apology', description: 'Owns the moment and keeps it real', opener: 'I am sorry —', closers: ['I will try to handle it better next time.', 'I want to make it right.'], emoji: [], sensitive: true, swaps: { 'my bad': 'I am sorry', fault: 'responsibility' } },
+  { id: 'boundary', accent: '#34d399', label: 'Boundary', description: 'Respectful but firm', opener: 'I need to be honest:', closers: ['Please respect that.', 'That boundary matters to me.'], emoji: [], sensitive: true, swaps: { 'I cannot': 'I am not able to', 'I can\'t': 'I am not able to' } },
+  { id: 'funny', accent: '#facc15', label: 'Funny', description: 'Light, playful, and not too serious', opener: 'Plot twist:', closers: ['not dramatic, just true.', 'that is the vibe.'], emoji: ['😂', '😅'], swaps: { very: 'super', really: 'actually' } },
+  { id: 'crush', accent: '#fb7185', label: 'Crush', description: 'Sweet without doing too much', opener: 'Low-key,', closers: ['I wanted you to know.', 'no pressure, just being honest.'], emoji: ['🙈', '✨'], swaps: { like: 'like talking to', cool: 'really easy to be around' } },
+  { id: 'parent', accent: '#60a5fa', label: 'Parent-safe', description: 'Respectful for family conversations', opener: 'I understand, and', closers: ['I am trying to handle this responsibly.', 'I wanted to explain calmly.'], emoji: [], swaps: { gonna: 'going to', wanna: 'want to', yeah: 'yes' } },
+  { id: 'teacher', accent: '#22d3ee', label: 'Teacher-ready', description: 'Polite enough for school', opener: 'Hi, I wanted to explain that', closers: ['Thank you for understanding.', 'I appreciate your help.'], emoji: [], swaps: { kid: 'student', stuff: 'work', gonna: 'going to' } },
+  { id: 'bestie', accent: '#e879f9', label: 'Bestie', description: 'Close-friend energy', opener: 'Bestie, real talk:', closers: ['love you for getting it.', 'you know I mean it.'], emoji: ['💕', '🫶'], swaps: { friend: 'bestie', really: 'for real' } },
+  { id: 'group-chat', accent: '#818cf8', label: 'Group Chat', description: 'Short and easy to send to everyone', opener: 'Quick update:', closers: ['drop thoughts when you can.', 'let me know what works.'], emoji: ['💬'], swaps: { everyone: 'y’all', people: 'everyone' } },
+  { id: 'hype', accent: '#fb923c', label: 'Hype', description: 'More excited and supportive', opener: 'Okay YES —', closers: ['I am so here for this!', 'you have got this.'], emoji: ['🔥', '👏'], swaps: { good: 'amazing', nice: 'so good', happy: 'excited' } },
+  { id: 'soft-no', accent: '#94a3b8', label: 'Soft No', description: 'Declines without sounding harsh', opener: 'Thank you for asking, but', closers: ['I hope you understand.', 'maybe another time.'], emoji: [], sensitive: true, swaps: { no: 'I am going to pass', cannot: "can't" } },
+  { id: 'check-in', accent: '#5eead4', label: 'Check-in', description: 'Caring and low-pressure', opener: 'No pressure to answer fast, but', closers: ['I am here if you want to talk.', 'just checking in on you.'], emoji: ['🤍'], swaps: { okay: 'doing okay', sad: 'having a hard time' } },
+  { id: 'fix-it', accent: '#4ade80', label: 'Fix It', description: 'Turns tension into a next step', opener: 'I want to fix this, so', closers: ['Can we talk about what would help next?', 'What can we do differently from here?'], emoji: [], swaps: { fight: 'argument', problem: 'issue', angry: 'upset' } },
 ];
 
 const dailyPrompts = [
@@ -219,10 +219,22 @@ function renderToneButtons() {
 
   tones.forEach((tone) => {
     const button = document.createElement('button');
-    button.className = tone.id === selectedTone.id ? 'tone-card active' : 'tone-card';
-    button.type = 'button';
-    button.setAttribute('aria-pressed', String(tone.id === selectedTone.id));
-    button.innerHTML = `<span>${tone.label}</span><small>${tone.description}</small>`;
+      const isSelected = tone.id === selectedTone.id;
+      button.className = isSelected ? 'tone-card active' : 'tone-card';    
+      button.type = 'button';
+      button.setAttribute('aria-pressed', String(isSelected));
+      button.style.setProperty('--tone-accent', tone.accent || 'var(--blue)');
+    const emoji = document.createElement('span');
+    emoji.className = 'tone-emoji';
+    emoji.setAttribute('aria-hidden', 'true');
+    emoji.textContent = (tone.emoji && tone.emoji[0]) || '✨';
+    const label = document.createElement('span');
+    label.className = 'tone-label';
+    label.textContent = tone.label;
+    const description = document.createElement('small');
+    description.className = 'tone-description';
+    description.textContent = tone.description;
+    button.append(emoji, label, description);
     button.addEventListener('click', () => {
       selectedTone = tone;
       renderToneButtons();

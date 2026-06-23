@@ -65,7 +65,7 @@ textarea {
 
 .app-shell {
   display: grid;
-  gap: 1.5rem;
+  gap: 1rem;
   margin: 0 auto;
   max-width: 1100px;
   min-height: 100vh;
@@ -84,7 +84,7 @@ textarea {
   border-radius: 2rem;
   color: white;
   overflow: hidden;
-  padding: clamp(2rem, 8vw, 5rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
   position: relative;
 }
 
@@ -108,8 +108,8 @@ textarea {
 }
 
 h1 {
-  font-size: clamp(2.4rem, 7vw, 5.4rem);
-  line-height: 0.95;
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+  line-height: 1.05;
   margin: 0;
   max-width: 850px;
 }
@@ -221,6 +221,19 @@ textarea:focus {
   padding: 1rem;
 }
 
+.output-panel p.output-placeholder {
+  align-items: center;
+  border: 1px dashed rgba(103, 232, 249, 0.42);
+  color: #c5d9f2;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.output-panel p.output-placeholder::before {
+  content: '✨';
+  flex: 0 0 auto;
+  font-size: 1.35rem;
+}
 
 .panel-heading,
 .output-actions {
@@ -296,6 +309,21 @@ textarea:focus {
   cursor: pointer;
   line-height: 1.45;
   padding: 0.85rem;
+}
+
+.saved-list li.saved-empty-card {
+  align-items: center;
+  border-style: dashed;
+  color: #c5d9f2;
+  cursor: default;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.saved-list li.saved-empty-card::before {
+  content: '🫧';
+  flex: 0 0 auto;
+  font-size: 1.3rem;
 }
 
 .saved-list strong,

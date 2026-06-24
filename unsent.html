@@ -4,9 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Voice You Didn't Send · Second Voice</title>
+    <meta name="description" content="A quiet place to figure out what you really mean before you post, text, or reply." />
+    <meta name="color-scheme" content="dark" />
     <link rel="icon" type="image/svg+xml" href="icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="icons/icon-192.svg" />
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#14110f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Second Voice" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Second Voice" />
+    <meta property="og:title" content="The Voice You Didn't Send" />
+    <meta property="og:description" content="A quiet place to figure out what you really mean before you send it." />
+    <meta name="twitter:card" content="summary" />
     <style>
       :root {
         --paper: #14110f;
@@ -171,5 +183,12 @@
       </footer>
     </main>
     <script src="src/unsent.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

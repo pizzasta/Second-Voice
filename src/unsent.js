@@ -143,7 +143,44 @@ function feltCount(text) {
   return 800 + (hash % 6200);
 }
 
-function renderEchoes() {
+// Optional real backend for Anonymous Echoes. Leave null to stay fully
+// local/offline. See docs/echoes-backend.md for the proposed API shape.
+const ECHOES_API = null; // e.g. '/api/echoes'
+
+function pickLocalEchoes() {
+  return echoResponses.slice().sort(() => Math.random() - 0.5).slice(0, 3);
+}
+
+function localEchoes(raw) {
+  return { count: feltCount(raw.toLowerCase()), echoes: pickLocalEchoes() };
+}
+
+// Try a real backend if one is configured; otherwise (or on any failure,
+// timeout, or offline) fall back to the local seeded echoes so the page
+// always works. Nothing is sent anywhere while ECHOES_API is null.
+async function fetchEchoes(raw) {
+  if (!ECHOES_API) return localEchoes(raw);
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
+    const res = await fetch(ECHOES_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: raw }),
+      signal: controller.signal
+    });
+    clearTimeout(timer);
+    if (!res.ok) throw new Error('bad status ' + res.status);
+    const data = await res.json();
+    const count = typeof data.feltCount === 'number' ? data.feltCount : feltCount(raw.toLowerCase());
+    const echoes = Array.isArray(data.echoes) && data.echoes.length ? data.echoes.slice(0, 3) : pickLocalEchoes();
+    return { count, echoes };
+  } catch (err) {
+    return localEchoes(raw);
+  }
+}
+
+async function renderEchoes() {
   const raw = (echoInput.value || '').trim();
   if (!raw) {
     echoCount.classList.remove('hidden');
@@ -151,12 +188,11 @@ function renderEchoes() {
     echoList.innerHTML = '';
     return;
   }
-  const count = feltCount(raw.toLowerCase());
+  const { count, echoes } = await fetchEchoes(raw);
   echoCount.classList.remove('hidden');
   echoCount.textContent = count.toLocaleString() + ' people felt this this month.';
   echoList.innerHTML = '';
-  const picks = echoResponses.slice().sort(() => Math.random() - 0.5).slice(0, 3);
-  picks.forEach((response, index) => {
+  echoes.forEach((response, index) => {
     const echo = document.createElement('div');
     echo.className = 'echo';
     echo.style.animationDelay = (index * 120) + 'ms';

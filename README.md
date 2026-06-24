@@ -12,13 +12,16 @@ There's also an **Age & Safety** page (`safety.html`) describing the privacy and
 
 ## Running locally
 
-This is a static app with a tiny zero-dependency Node server.
+This is a static app with a tiny zero-dependency Node server. The same
+server also exposes the Anonymous Echoes API (`/api/echoes`).
 
 ```bash
 npm start
 ```
 
-Then open http://localhost:3000 (the port the server prints). Any static file host works too — just serve the project root.
+Then open the URL the server prints (http://localhost:4173 by default). A
+plain static host works too for the front end, but the Anonymous Echoes API
+needs this Node server (or an equivalent) running.
 
 ## Validating
 
@@ -49,8 +52,8 @@ The app is installable and works offline. `manifest.webmanifest` defines the ico
 
 ## Privacy
 
-Everything stays on the device — there are no accounts and no servers processing message content. The "Anonymous Echoes" counts and responses are currently illustrative companionship written into the app, not live user data. To make them real, add a backend to store and aggregate anonymous submissions.
+The rephrase tool and the unsent page run entirely on the device — there are no accounts, and message content for those features never leaves the browser. "Anonymous Echoes" is the one feature that talks to a server: a small, privacy-first API in `server.js` accepts a short feeling, returns a fuzzed "how many felt this" count plus a few approved anonymous echoes, and queues new submissions as `pending` so nothing is shown to others until it passes moderation. It stores only the text, a derived topic, and timestamps — no accounts, IPs, or device IDs. If the API is unavailable the client falls back to local seeded echoes, so the page still works offline. See `docs/echoes-backend.md` for the full design.
 
 ## Before launch
 
-A few placeholders in `safety.html` still need real values: the contact email (`REPLACE_WITH_REAL_EMAIL@example.com`) and the "Last updated" date (`REPLACE_WITH_DATE`). Have counsel and child-safety reviewers validate the notices and flows before scaling.
+`safety.html` still uses a clearly-labeled placeholder contact address that must be swapped for a real, monitored email before launch. Have counsel and child-safety reviewers validate the notices and flows. The Anonymous Echoes API in `server.js` is a working reference, but before real use it needs a human moderation UI behind authentication and durable, scalable storage (the reference uses an in-memory store plus a JSON file under `data/`).

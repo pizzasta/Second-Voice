@@ -3,8 +3,11 @@
 This document sketches how to turn **Anonymous Echoes** from the current
 local/illustrative demo into a real, privacy-first community feature.
 
-> Status: design proposal. Nothing here is implemented yet. The live app
-> uses seeded, on-device sample data only.
+> Status: implemented. A working, dependency-free reference version of this
+> API ships in `server.js` (`POST /api/echoes` and `GET /api/echoes?topic=`),
+> and the client (`src/unsent.js`) calls it with `ECHOES_API = '/api/echoes'`,
+> falling back to local seeded echoes when offline. The notes below describe
+> the design; harden moderation and storage before any real launch.
 
 ## Goals
 
@@ -106,5 +109,9 @@ A small step-up from the current static app:
    feature still works with no network (matches the PWA/offline goal).
 5. Add abuse rate-limiting via a hashed, ephemeral token.
 
-Until steps 1-3 exist, Anonymous Echoes should keep its current
-on-device, clearly-illustrative behavior.
+A working reference of steps 1-2 now lives in `server.js` (in-memory + a
+JSON file under `data/`, with `pending` moderation status, hard input
+filters, topic clustering, and fuzzed counts). Step 3 (a real human
+moderation UI behind authentication) and durable, scalable storage are
+still required before launch. The client keeps the seeded samples as an
+offline fallback, so the feature degrades gracefully with no network.

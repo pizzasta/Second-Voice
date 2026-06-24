@@ -581,3 +581,60 @@ textarea:focus-visible,
   color: #07111f;
   border-color: #ffffff;
 }
+
+/* ----------------------------- Moderation view (admin.html) ----------------------------- */
+.mod-auth {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem 0 0.25rem;
+}
+.mod-auth label {
+  flex-basis: 100%;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.mod-auth input {
+  flex: 1 1 16rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(7, 17, 31, 0.6);
+  color: inherit;
+}
+#mod-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+#mod-list .echo {
+  padding: 0.85rem 1rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+.echo-text {
+  margin: 0 0 0.4rem;
+  font-size: 1.02rem;
+}
+#mod-list .meta {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+.mod-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+.mod-actions button {
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+.mod-actions button.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: inherit;
+}

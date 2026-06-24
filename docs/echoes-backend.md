@@ -6,8 +6,9 @@ local/illustrative demo into a real, privacy-first community feature.
 > Status: implemented. A working, dependency-free reference version of this
 > API ships in `server.js` (`POST /api/echoes` and `GET /api/echoes?topic=`),
 > and the client (`src/unsent.js`) calls it with `ECHOES_API = '/api/echoes'`,
-> falling back to local seeded echoes when offline. The notes below describe
-> the design; harden moderation and storage before any real launch.
+> falling back to local seeded echoes when offline. A minimal moderation
+> view ships at `admin.html` (token-gated via `ADMIN_TOKEN`). The notes below
+> describe the design; harden authentication and storage before any real launch.
 
 ## Goals
 
@@ -109,9 +110,19 @@ A small step-up from the current static app:
    feature still works with no network (matches the PWA/offline goal).
 5. Add abuse rate-limiting via a hashed, ephemeral token.
 
-A working reference of steps 1-2 now lives in `server.js` (in-memory + a
+A working reference of steps 1-3 now lives in the repo: `server.js` holds
+the public API and an admin API (`GET /api/admin/echoes`, `POST
+/api/admin/echoes/approve|reject`), backed by an in-memory store plus a
 JSON file under `data/`, with `pending` moderation status, hard input
-filters, topic clustering, and fuzzed counts). Step 3 (a real human
-moderation UI behind authentication) and durable, scalable storage are
-still required before launch. The client keeps the seeded samples as an
-offline fallback, so the feature degrades gracefully with no network.
+filters, topic clustering, and fuzzed counts. A minimal moderation UI ships
+at `admin.html` (logic in `src/admin.js`): paste the admin token, review
+pending echoes, and approve or reject each one.
+
+The admin endpoints are gated by a shared secret: set `ADMIN_TOKEN` to a
+long random value in the server environment. While it is unset the admin
+API is disabled (returns 503), and `admin.html` is marked `noindex`. This
+shared-secret gate is a reasonable start, but before real launch replace it
+with proper authentication (per-moderator accounts, sessions, audit logs)
+and move from the JSON-file store to durable, scalable storage. The client
+keeps the seeded samples as an offline fallback, so the public feature
+degrades gracefully with no network.

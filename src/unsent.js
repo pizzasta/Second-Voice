@@ -145,7 +145,7 @@ function feltCount(text) {
 
 // Optional real backend for Anonymous Echoes. Leave null to stay fully
 // local/offline. See docs/echoes-backend.md for the proposed API shape.
-const ECHOES_API = null; // e.g. '/api/echoes'
+const ECHOES_API = '/api/echoes'; // set to null to stay fully local/offline
 
 function pickLocalEchoes() {
   return echoResponses.slice().sort(() => Math.random() - 0.5).slice(0, 3);

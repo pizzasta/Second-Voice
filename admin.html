@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moderation | Second Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Private moderation view for Anonymous Echoes." />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/svg+xml" href="icons/icon-192.svg" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell legal-page">
+      <section class="panel legal-card">
+        <p class="eyebrow">Private &middot; staff only</p>
+        <h1>Moderate Anonymous Echoes</h1>
+        <p>
+          Review feelings people submitted. Approving makes an echo visible to
+          others; rejecting hides it. Nothing here is public until you approve it.
+        </p>
+
+        <div class="mod-auth">
+          <label for="admin-token">Admin token</label>
+          <input
+            id="admin-token"
+            type="password"
+            autocomplete="off"
+            placeholder="paste the ADMIN_TOKEN set on the server"
+          />
+          <button id="admin-load" type="button">Load pending</button>
+        </div>
+        <p class="legal-meta">
+          The token is held only in this page for the session and sent with each
+          request. It is never saved to disk by this page.
+        </p>
+
+        <p id="mod-status" class="status-message" role="status" aria-live="polite"></p>
+        <div id="mod-list"></div>
+
+        <p class="legal-meta">
+          <a class="legal-back" href="./">Back to Second Voice</a>
+        </p>
+      </section>
+    </main>
+    <script src="src/admin.js"></script>
+  </body>
+</html>

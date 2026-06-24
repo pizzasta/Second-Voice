@@ -1,12 +1,14 @@
 {
   "name": "Second Voice",
   "short_name": "Second Voice",
-  "description": "Rephrase messages into teen-friendly tones for awkward plans, apologies, boundaries, check-ins, and everyday conversations.",
+  "description": "Rephrase messages into teen-friendly tones, and explore what you really mean before you send it.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "lang": "en",
+  "dir": "ltr",
+  "categories": ["lifestyle", "social", "utilities"],
   "background_color": "#07111f",
   "theme_color": "#07111f",
   "icons": [
@@ -14,7 +16,27 @@
       "src": "icons/icon-192.svg",
       "type": "image/svg+xml",
       "sizes": "192x192",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "The Voice You Didn't Send",
+      "short_name": "Unsent",
+      "description": "Explore what you're actually feeling before you send it.",
+      "url": "./unsent.html"
     }
   ]
 }

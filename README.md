@@ -37,13 +37,15 @@ This runs `scripts/validate-static-app.js`, which checks that the core files exi
 index.html              Rephrase tool (home)
 unsent.html             The Voice You Didn't Send
 safety.html             Age & safety notes
+admin.html              Private moderation view for Echoes
 src/main.js             Rephrase logic and tone definitions
 src/unsent.js           Voice Split, Echoes, daily memory
+src/admin.js            Moderation view logic
 src/styles.css          Shared styles
 sw.js                   Service worker (offline-first)
 manifest.webmanifest    PWA manifest (installable)
 icons/                  App icons (192 + 512, maskable)
-server.js               Minimal static file server
+server.js               Static server + Anonymous Echoes & admin API
 ```
 
 ## Progressive Web App
@@ -56,4 +58,4 @@ The rephrase tool and the unsent page run entirely on the device — there are n
 
 ## Before launch
 
-`safety.html` still uses a clearly-labeled placeholder contact address that must be swapped for a real, monitored email before launch. Have counsel and child-safety reviewers validate the notices and flows. The Anonymous Echoes API in `server.js` is a working reference, but before real use it needs a human moderation UI behind authentication and durable, scalable storage (the reference uses an in-memory store plus a JSON file under `data/`).
+`safety.html` still uses a clearly-labeled placeholder contact address that must be swapped for a real, monitored email before launch. Have counsel and child-safety reviewers validate the notices and flows. A minimal moderation view now ships at `admin.html`: set `ADMIN_TOKEN` to a long random secret in the server environment to enable it (while unset, the admin API is disabled and returns 503). That shared-secret gate is only a starting point — before real use, replace it with proper per-moderator authentication, add audit logging, and move the Anonymous Echoes store from the in-memory + JSON-file reference (`data/`) to durable, scalable storage.

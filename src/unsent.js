@@ -124,14 +124,14 @@ const echoGo = document.getElementById('echo-go');
 const echoCount = document.getElementById('echo-count');
 const echoList = document.getElementById('echo-list');
 
-// Gentle, non-judgmental companion responses. These are written-in, not live.
+// Real-sounding notes from other people, written in. Not live, not comments.
 const echoResponses = [
-  'I thought it was just me.',
-  'Some days it feels so loud. Today I just sat with it.',
-  'I keep waiting for someone to text first.',
-  'It gets quieter. Not gone, but quieter.',
-  'You\'re allowed to feel this and still be okay.',
-  'I felt this last month. I still made it through.',
+  'honestly same. some days are just like this.',
+  'me too lol. didn\'t think anyone else would say it.',
+  'ok the texting first thing... yeah. all the time.',
+  'felt this so hard today. kinda glad it\'s not just me.',
+  'i never say it out loud but yeah. exactly this.',
+  'going through it rn too. we got this i guess.',
 ];
 
 // Deterministic "how many felt this" number so the same feeling feels consistent.

@@ -4,9 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Age &amp; Safety Approach | Second Voice</title>
+    <meta name="description" content="How Second Voice approaches age-appropriate design, privacy, and child safety." />
+    <meta name="color-scheme" content="dark" />
     <link rel="icon" type="image/svg+xml" href="icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="icons/icon-192.svg" />
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#07111f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Second Voice" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
@@ -53,8 +59,15 @@
         </p>
 
         <p class="legal-meta">Last updated: REPLACE_WITH_DATE</p>
-        <p><a class="legal-back" href="./">Back to Second Voice</a></p>
+        <p><a class="legal-back" href="./">Back to Second Voice</a> &middot; <a class="legal-back" href="unsent.html">The Voice You Didn't Send</a></p>
       </section>
     </main>
+      <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Second Voice">
+  <rect width="512" height="512" rx="112" fill="#07111f"/>
+  <g>
+    <path d="M136 132h240a40 40 0 0 1 40 40v140a40 40 0 0 1-40 40H236l-72 60v-60h-28a40 40 0 0 1-40-40V172a40 40 0 0 1 40-40z" fill="#38bdf8"/>
+    <rect x="176" y="196" width="200" height="22" rx="11" fill="#07111f" opacity="0.85"/>
+    <rect x="176" y="244" width="148" height="22" rx="11" fill="#07111f" opacity="0.85"/>
+  </g>
+</svg>

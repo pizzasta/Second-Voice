@@ -3,11 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Second Voice</title>
+    <title>Second Voice — say it your way</title>
+    <meta name="description" content="A teen-friendly space to rephrase messages into the right tone, and explore what you really mean before you post, text, or reply." />
+    <meta name="color-scheme" content="dark" />
     <link rel="stylesheet" href="src/styles.css" />
     <link rel="icon" type="image/svg+xml" href="icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="icons/icon-192.svg" />
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#07111f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Second Voice" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Second Voice" />
+    <meta property="og:title" content="Second Voice — say it your way" />
+    <meta property="og:description" content="Rephrase messages into the right tone, and explore what you really mean before you send it." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Second Voice — say it your way" />
+    <meta name="twitter:description" content="Rephrase messages into the right tone, and explore what you really mean before you send it." />
   </head>
   <body>
     <main class="app-shell">
@@ -74,5 +88,12 @@
       </footer>
     </main>
     <script src="src/main.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

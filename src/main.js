@@ -277,7 +277,7 @@ function revealOutput() {
   if (!cleanInput(messageInput.value)) {
     return;
   }
-  output.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  output.scrollIntoView({ behavior: 'auto', block: 'center' });
   output.classList.remove('output-flash');
   void output.offsetWidth;
   output.classList.add('output-flash');

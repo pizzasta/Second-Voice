@@ -776,3 +776,25 @@ textarea:focus-visible,
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ---- Rephrase result flash (confirms a tone was applied) ---- */
+.output-flash {
+  animation: outputFlash 0.9s ease;
+}
+@keyframes outputFlash {
+  0% {
+    box-shadow: 0 0 0 0 var(--tone-accent, var(--blue));
+  }
+  30% {
+    box-shadow: 0 0 0 4px var(--tone-accent, var(--blue));
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .output-flash {
+    animation: none;
+  }
+}

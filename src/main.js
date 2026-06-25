@@ -239,6 +239,7 @@ function renderToneButtons() {
       selectedTone = tone;
       renderToneButtons();
       updateOutput();
+      revealOutput();
       announce(`${tone.label} tone selected.`);
     });
     button.addEventListener('keydown', (event) => {
@@ -272,11 +273,22 @@ function updateOutput() {
   renderComparison(false);
 }
 
+function revealOutput() {
+  if (!cleanInput(messageInput.value)) {
+    return;
+  }
+  output.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  output.classList.remove('output-flash');
+  void output.offsetWidth;
+  output.classList.add('output-flash');
+}
+
 function chooseRandomTone() {
   const otherTones = tones.filter((tone) => tone.id !== selectedTone.id);
   selectedTone = otherTones[Math.floor(Math.random() * otherTones.length)];
   renderToneButtons();
   updateOutput();
+    revealOutput();
   announce(`${selectedTone.label} tone selected.`);
 }
 

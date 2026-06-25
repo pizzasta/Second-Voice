@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Dashboard — Second Voice</title>
+    <meta name="description" content="A private, no-login dashboard that remembers your saved rephrasings and your activity. Everything stays on this device." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#1f2a44" />
+    <meta name="robots" content="noindex" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main class="dashboard-wrap">
+      <header class="dashboard-head">
+        <p class="dashboard-eyebrow">Just for you</p>
+        <h1>Your dashboard</h1>
+        <p class="dashboard-sub">
+          Everything here is saved only in this browser, on this device. No account,
+          no sign-in, and nothing is sent anywhere. Clearing your browser data clears this too.
+        </p>
+        <p><a class="dashboard-back" href="index.html">&larr; Back to Second Voice</a></p>
+      </header>
+
+      <section class="dashboard-stats" aria-label="Your activity">
+        <div class="stat-card">
+          <span class="stat-num" id="stat-improved">0</span>
+          <span class="stat-label">messages rephrased</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-saved">0</span>
+          <span class="stat-label">saved rephrasings</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-prompts">0</span>
+          <span class="stat-label">unsent prompts opened</span>
+        </div>
+      </section>
+
+      <section class="dashboard-saved" aria-label="Saved rephrasings">
+        <h2>Saved rephrasings</h2>
+        <p class="dashboard-hint" id="saved-empty" hidden>
+          Nothing saved yet. When you rephrase a message and tap save, it shows up here.
+        </p>
+        <ul id="saved-list" class="saved-list"></ul>
+      </section>
+
+      <section class="dashboard-tools" aria-label="Your data">
+        <h2>Your data</h2>
+        <p class="dashboard-hint">
+          You're in control. Export a copy to keep, or clear everything from this device.
+        </p>
+        <div class="dashboard-actions">
+          <button type="button" id="export-btn">Export my data</button>
+          <button type="button" id="clear-btn" class="secondary">Clear everything</button>
+        </div>
+        <p class="dashboard-status" id="dashboard-status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('sw.js').catch(function () {});
+        });
+      }
+    </script>
+    <script src="src/dashboard.js"></script>
+  </body>
+</html>

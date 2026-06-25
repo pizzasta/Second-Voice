@@ -261,6 +261,7 @@ textarea:focus {
   line-height: 1.7;
   margin: 1rem 0 0;
   padding: 1rem;
+  white-space: pre-wrap;
 }
 
 .output-panel p.output-placeholder {

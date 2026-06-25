@@ -45,21 +45,7 @@
           <p id="message-guidance" class="input-guidance"><span id="character-count">0</span>/500 characters. Short, specific messages usually rephrase best.</p>
         </div>
 
-        <aside class="retention-panel" aria-label="Optional practice features">
-          <div class="mini-card streak-card">
-            <span class="mini-label">Messages improved</span>
-            <strong><span id="messages-improved-count">0</span> helped</strong>
-            <p>A simple total of messages you rephrase here — no streaks, no pressure.</p>
-          </div>
-          <div class="mini-card prompt-card">
-            <span class="mini-label">Optional practice idea</span>
-            <p id="daily-prompt">Try a tiny rewrite challenge when you’re ready.</p>
-          </div>
-        </aside>
-
-        <div class="tone-grid" aria-label="Choose a tone" id="tone-grid"></div>
-
-        <div class="panel output-panel">
+<div class="panel output-panel">
           <p id="safety-note" class="safety-note"></p>
           <div class="output-header">
             <div>
@@ -77,6 +63,20 @@
           <p id="status-message" class="sr-only" aria-live="polite"></p>
           <textarea id="clipboard-fallback" class="clipboard-fallback" aria-label="Copy this rephrased message manually" readonly hidden></textarea>
         </div>
+
+                <aside class="retention-panel" aria-label="Optional practice features">
+          <div class="mini-card streak-card">
+            <span class="mini-label">Messages improved</span>
+            <strong><span id="messages-improved-count">0</span> helped</strong>
+            <p>A simple total of messages you rephrase here — no streaks, no pressure.</p>
+          </div>
+          <div class="mini-card prompt-card">
+            <span class="mini-label">Optional practice idea</span>
+            <p id="daily-prompt">Try a tiny rewrite challenge when you’re ready.</p>
+          </div>
+        </aside>
+
+        <div class="tone-grid" aria-label="Choose a tone" id="tone-grid"></div>
 
         <div class="panel saved-panel">
           <span class="label-text">Saved quick-sends</span>
